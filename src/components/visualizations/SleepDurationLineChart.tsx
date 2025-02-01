@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { SleepRecord } from "../../types/SleepRecord";
+import { Box } from "@mui/material";
 
 interface Props {
   data: SleepRecord[];
@@ -26,6 +27,7 @@ const SleepDurationLineChart: React.FC<Props> = ({ data }) => {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    // Process data: Convert Age and Sleep Duration to numbers.
     const processed = data
       .map((d) => {
         const ageStr = d.Age ? d.Age.toString().trim() : "";
@@ -78,12 +80,14 @@ const SleepDurationLineChart: React.FC<Props> = ({ data }) => {
     g.append("g").attr("transform", `translate(0, ${innerHeight})`).call(xAxis);
     g.append("g").call(yAxis);
 
+    // Add axis labels.
     g.append("text")
       .attr("x", innerWidth / 2)
       .attr("y", innerHeight + margin.bottom - 10)
       .attr("text-anchor", "middle")
       .attr("font-size", "12px")
       .text("Age");
+
     g.append("text")
       .attr("transform", "rotate(-90)")
       .attr("x", -innerHeight / 2)
@@ -153,7 +157,11 @@ const SleepDurationLineChart: React.FC<Props> = ({ data }) => {
     };
   }, [data]);
 
-  return <svg ref={svgRef}></svg>;
+  return (
+    <Box sx={{ overflowX: "auto" }}>
+      <svg ref={svgRef}></svg>
+    </Box>
+  );
 };
 
 export default SleepDurationLineChart;

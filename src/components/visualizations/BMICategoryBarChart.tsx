@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { SleepRecord } from "../../types/SleepRecord";
+import { Box } from "@mui/material";
 
 interface Props {
   data: SleepRecord[];
@@ -11,7 +12,6 @@ const BMICategoryBarChart: React.FC<Props> = ({ data }) => {
 
   useEffect(() => {
     if (!svgRef.current) return;
-
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
@@ -91,7 +91,11 @@ const BMICategoryBarChart: React.FC<Props> = ({ data }) => {
     };
   }, [data]);
 
-  return <svg ref={svgRef}></svg>;
+  return (
+    <Box sx={{ overflowX: "auto" }}>
+      <svg ref={svgRef}></svg>
+    </Box>
+  );
 };
 
 export default BMICategoryBarChart;

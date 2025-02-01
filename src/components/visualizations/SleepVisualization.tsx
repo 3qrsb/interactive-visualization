@@ -5,43 +5,66 @@ import SleepDurationLineChart from "./SleepDurationLineChart";
 import SleepDisorderPieChart from "./SleepDisorderPieChart";
 import BMICategoryBarChart from "./BMICategoryBarChart";
 
+import { Box, Typography, Divider, CircularProgress } from "@mui/material";
+
 const SleepVisualization: React.FC = () => {
   const [data, setData] = useState<SleepRecord[]>([]);
 
   useEffect(() => {
     d3.csv("/data.csv").then((loadedData) => {
-      const processedData = loadedData.map((d) => {
-        return d as unknown as SleepRecord;
-      });
+      const processedData = loadedData.map((d) => d as unknown as SleepRecord);
       setData(processedData);
     });
   }, []);
 
   if (data.length === 0) {
-    return <div>Loading data...</div>;
+    return (
+      <Box sx={{ p: 2, textAlign: "center" }}>
+        <CircularProgress />
+        <Typography variant="h6" sx={{ mt: 2 }}>
+          Loading data...
+        </Typography>
+      </Box>
+    );
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Sleep Health and Lifestyle Visualization</h1>
-      {/* Sleep Duration vs. Age */}
-      <div>
-        <h2>Sleep Duration vs. Age</h2>
-        <SleepDurationLineChart data={data} />
-      </div>
-      <hr />
-      {/* Sleep Disorder Distribution */}
-      <div>
-        <h2>Sleep Disorder Distribution</h2>
-        <SleepDisorderPieChart data={data} />
-      </div>
-      <hr />
-      {/* BMI Category Counts */}
-      <div>
-        <h2>BMI Category Distribution</h2>
-        <BMICategoryBarChart data={data} />
-      </div>
-    </div>
+    <Box sx={{ p: 2, textAlign: "center" }}>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Sleep Health and Lifestyle Visualization
+      </Typography>
+
+      <Box sx={{ my: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          Sleep Duration vs. Age
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <SleepDurationLineChart data={data} />
+        </Box>
+      </Box>
+
+      <Divider sx={{ my: 3 }} />
+
+      <Box sx={{ my: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          Sleep Disorder Distribution
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <SleepDisorderPieChart data={data} />
+        </Box>
+      </Box>
+
+      <Divider sx={{ my: 3 }} />
+
+      <Box sx={{ my: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          BMI Category Distribution
+        </Typography>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <BMICategoryBarChart data={data} />
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
