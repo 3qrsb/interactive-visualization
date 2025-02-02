@@ -1,0 +1,11 @@
+Model Information:
+* title:	SH-60B Seahawk Helicopter
+* source:	https://sketchfab.com/3d-models/sh-60b-seahawk-helicopter-558373489bc145e292342efbe4b982ed
+* author:	Muhamad Mirza Arrafi (https://sketchfab.com/nazidefenseforceofficial)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "SH-60B Seahawk Helicopter" (https://sketchfab.com/3d-models/sh-60b-seahawk-helicopter-558373489bc145e292342efbe4b982ed) by Muhamad Mirza Arrafi (https://sketchfab.com/nazidefenseforceofficial) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
